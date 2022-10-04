@@ -13,6 +13,7 @@ coverage
 dist
 dist-ssr
 *.local
+jspm_packages
 
 # Editor directories and files
 .vscode/*
