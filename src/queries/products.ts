@@ -4,14 +4,19 @@ import { AvailableProduct } from "~/models/Product";
 import { useQuery, useQueryClient, useMutation } from "react-query";
 import React from "react";
 
+interface ProductResponse {
+  products: AvailableProduct[];
+}
+
 export function useAvailableProducts() {
   return useQuery<AvailableProduct[], AxiosError>(
     "available-products",
     async () => {
-      const res = await axios.get<AvailableProduct[]>(
-        `${API_PATHS.bff}/product/available`
+      const { data } = await axios.get<ProductResponse>(
+        `${API_PATHS.product}/products`
       );
-      return res.data;
+      const { products } = data;
+      return products;
     }
   );
 }
